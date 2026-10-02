@@ -1,11 +1,45 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Welcome from "../components/Welcome.astro";
+import Layout from "../layouts/Layout.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+--- // Import stylesheet Tailwind atau komponen di frontmatter Astro jika ada
+---
+
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <title>Landing Page Astro</title>
+  </head>
+  <body class="bg-slate-900 text-white min-h-screen">
+    <!-- Contoh Class Tailwind -->
+    <h1 id="hero-title" class="text-5xl font-bold text-center mt-20 opacity-0">
+      Selamat Datang!
+    </h1>
+
+    <!-- Script Client-Side untuk Lenis & GSAP -->
+    <script>
+      import Lenis from "lenis";
+      import gsap from "gsap";
+
+      // 1. Inisialisasi Lenis Smooth Scroll
+      const lenis = new Lenis();
+      function raf(time: number) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+
+      // 2. Inisialisasi Animasi GSAP
+      gsap.to("#hero-title", {
+        opacity: 1,
+        y: -20,
+        duration: 1.5,
+        ease: "power3.out",
+      });
+    </script>
+  </body>
+</html>
